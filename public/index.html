@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIRSA - Retinal AI Scanning</title>
+
+    <!-- Modern Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Overlay Container for Readability -->
+    <div class="overlay">
+
+        <!-- Navbar -->
+        <nav>
+            <div class="logo">VIRSA</div>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-btn">About VIRSA</a></li>
+                <li><a href="#registration" class="nav-btn btn-primary">Join Us</a></li>
+            </ul>
+        </nav>
+
+        <!-- Container for App Views -->
+        <main id="app-container">
+
+            <!-- VIEW 1: Landing Page and Registration (Visible by default) -->
+            <div id="view-landing">
+                <!-- Hero Section: About VIRSA -->
+                <section id="about" class="hero fade-in">
+                    <div class="glass-container">
+                        <h1>About VIRSA</h1>
+                        <p>The Vision Impairment Risk Stratification Algorithm (VIRSA) is a high-speed screening
+                            platform designed to solve this crisis. By leveraging advanced image processing and
+                            systematic scoring, VIRSA categorizes patients based on risk levels. Our mission is simple:
+                            streamline the screening process so that high-risk patients never have to wait for the care
+                            they deserve.</p>
+                        <a href="#registration" class="btn-primary large-btn">Get Started</a>
+                    </div>
+                </section>
+
+                <!-- Registration Section: Login & Signup -->
+                <section id="registration" class="registration fade-in">
+                    <div class="glass-container auth-form-container">
+
+                        <!-- Login Form -->
+                        <div class="form-box" id="login-box">
+                            <h2>Login</h2>
+                            <form id="login-form">
+                                <div class="input-group">
+                                    <label for="login-username">Username</label>
+                                    <input type="text" id="login-username" required placeholder="Enter username">
+                                </div>
+                                <div class="input-group">
+                                    <label for="login-phone">Phone Number</label>
+                                    <input type="tel" id="login-phone" required placeholder="Enter phone number">
+                                </div>
+                                <button type="submit" class="btn-primary full-width">Login</button>
+                                <p class="form-msg error" id="login-error"></p>
+                            </form>
+                            <p class="toggle-text mt-2 text-center">
+                                Don't have an account? <a href="#" id="show-signup" class="toggle-link">Sign Up</a>
+                            </p>
+                        </div>
+
+                        <!-- Signup Form -->
+                        <div class="form-box hidden" id="signup-box">
+                            <h2>Sign Up</h2>
+                            <form id="signup-form">
+                                <div class="input-group">
+                                    <label for="signup-username">Username</label>
+                                    <input type="text" id="signup-username" required placeholder="Choose a username">
+                                </div>
+                                <div class="input-group">
+                                    <label for="signup-phone">Phone Number</label>
+                                    <input type="tel" id="signup-phone" required placeholder="Enter phone number">
+                                </div>
+                                <div class="input-group">
+                                    <label for="signup-dob">Date of Birth</label>
+                                    <input type="date" id="signup-dob" required>
+                                </div>
+                                <button type="submit" class="btn-primary full-width">Sign Up</button>
+                                <p class="form-msg error" id="signup-error"></p>
+                                <p class="form-msg success" id="signup-success"></p>
+                            </form>
+                            <p class="toggle-text mt-2 text-center">
+                                Already have an account? <a href="#" id="show-login" class="toggle-link">Sign In</a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- VIEW 2: Data View (People List) -->
+            <div id="view-people" class="hidden fade-in">
+                <section class="data-view">
+                    <div class="glass-container w-full">
+                        <div class="header-banner">
+                            <h2>Patient Details</h2>
+                            <div class="nav-controls">
+                                <button id="logout-people-btn" class="nav-btn btn-secondary">Logout</button>
+                            </div>
+                        </div>
+
+                        <div class="people-container">
+                            <!-- List Header -->
+                            <div class="people-list-header">
+                                <span class="col-slno">Sl No</span>
+                                <span class="col-name">Person Name</span>
+                                <span class="col-age">Age</span>
+                                <span class="col-date">Date</span>
+                                <span class="col-address">Address</span>
+                                <span class="col-score text-center" style="font-weight:bold;">Eye Health Value</span>
+                            </div>
+
+                            <!-- Dynamic List -->
+                            <div id="people-list" class="people-list">
+                                <!-- Populated by JS -->
+                                <p class="text-center text-muted py-2" id="empty-people-msg">No people added yet.</p>
+                            </div>
+
+                            <!-- Add Person Form (Inline) -->
+                            <form id="add-person-form" class="add-person-row mt-4">
+                                <div class="col-slno text-center text-muted" style="font-size:0.9rem;">Auto</div>
+                                <input type="text" id="person-name" placeholder="Person Name" required
+                                    class="col-name form-input">
+                                <input type="number" id="person-age" placeholder="Age" required
+                                    class="col-age form-input" min="0" max="120">
+                                <input type="date" id="person-date" required class="col-date form-input">
+                                <input type="text" id="person-address" placeholder="Address" required
+                                    class="col-address form-input">
+                                <div class="col-score"></div>
+                                <button type="submit" class="btn-add-person" title="Add Person">+</button>
+                            </form>
+                            <p id="person-error" class="form-msg error"></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- MODAL: Person Details (Reports List) -->
+            <div id="person-details-modal" class="modal-overlay hidden fade-in">
+                <div class="modal-content" style="max-width: 900px;">
+                    <button id="close-details-btn" class="modal-close-btn" title="Close">&times;</button>
+                    <div class="header-banner">
+                        <h2 id="person-details-name">Patient Reports</h2>
+                    </div>
+
+                    <div class="reports-container">
+                        <div id="reports-list">
+                            <!-- Populated by JS -->
+                            <p class="text-center text-muted py-2" id="empty-reports-msg">No reports found for this
+                                patient.</p>
+                        </div>
+                        <button id="add-new-report-btn" class="btn-primary large-btn center-btn mt-4">Take New
+                            Assessment</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODAL: Systemic Scoring Questionnaire (Hidden by default) -->
+            <div id="questionnaire-modal" class="modal-overlay hidden fade-in">
+                <div class="modal-content">
+                    <button id="close-modal-btn" class="modal-close-btn" title="Close">&times;</button>
+                    <div class="header-banner">
+                        <h2 id="welcome-message">Scoring</h2>
+                        <h4 id="overall-score-badge"
+                            style="text-align: center; color:var(--color-primary-dark); margin-top: -10px;"></h4>
+                    </div>
+
+                    <div class="score-wizard">
+
+
+                        <form id="scoring-form">
+                            <!-- Q1: HbA1c -->
+                            <div class="q-card">
+                                <p class="question-text">1. HbA1c Level:</p>
+                                <input type="number" name="q1" step="0.1" required class="form-input"
+                                    placeholder="e.g. 7.2">
+                            </div>
+
+                            <!-- Q2: Duration of Diabetes -->
+                            <div class="q-card">
+                                <p class="question-text">2. Duration of Diabetes (Years):</p>
+                                <input type="number" name="q2" required class="form-input" placeholder="e.g. 8">
+                            </div>
+
+                            <!-- Q3: Systolic BP -->
+                            <div class="q-card">
+                                <p class="question-text">3. Systolic BP:</p>
+                                <input type="number" name="q3" required class="form-input" placeholder="e.g. 135">
+                            </div>
+
+                            <!-- Q4: Renal Involvement -->
+                            <div class="q-card">
+                                <p class="question-text">4. Renal Involvement:</p>
+                                <select name="q4" class="form-input" required>
+                                    <option value="" disabled selected>Select status...</option>
+                                    <option value="0">None / Normal</option>
+                                    <option value="1">Microalbuminuria present</option>
+                                    <option value="2">Macroalbuminuria or eGFR &lt; 60</option>
+                                </select>
+                            </div>
+
+                            <!-- Q5: Lipid Abnormality -->
+                            <div class="q-card">
+                                <p class="question-text">5. Lipid Abnormality (Check all that apply):</p>
+                                <div class="radio-group vertical-stack" style="flex-direction: column;">
+                                    <label><input type="checkbox" name="q5_chol" value="yes"> Raised
+                                        cholesterol</label>
+                                    <label><input type="checkbox" name="q5_ldl" value="yes"> Raised LDL</label>
+                                    <label><input type="checkbox" name="q5_tg" value="yes"> Raised
+                                        triglycerides</label>
+                                </div>
+                            </div>
+
+                            <!-- Q6: BMI -->
+                            <div class="q-card">
+                                <p class="question-text">6. Body Mass Index (BMI):</p>
+                                <input type="number" name="q6" step="0.1" required class="form-input"
+                                    placeholder="e.g. 24.5">
+                            </div>
+
+                            <!-- Q7: Smoking -->
+                            <div class="q-card">
+                                <p class="question-text">7. Smoking Status:</p>
+                                <select name="q7" class="form-input" required>
+                                    <option value="" disabled selected>Select status...</option>
+                                    <option value="0">Non-smoker</option>
+                                    <option value="1">Former smoker</option>
+                                    <option value="2">Current smoker</option>
+                                </select>
+                            </div>
+
+                            <!-- Q8: Type of Diabetes -->
+                            <div class="q-card">
+                                <p class="question-text">8. Type of Diabetes:</p>
+                                <select name="q8" class="form-input" required>
+                                    <option value="" disabled selected>Select type...</option>
+                                    <option value="1">Type 1</option>
+                                    <option value="2">Type 2</option>
+                                </select>
+                            </div>
+
+                            <hr style="margin: 3rem 0; border: 1px solid var(--color-glass-border);">
+
+
+
+                            <!-- G1: Age -->
+                            <div class="q-card">
+                                <p class="question-text">1. Age:</p>
+                                <input type="number" name="g1" required class="form-input" placeholder="e.g. 55">
+                            </div>
+
+                            <!-- G2: Intraocular Pressure (IOP) -->
+                            <div class="q-card">
+                                <p class="question-text">2. Intraocular Pressure (mmHg):</p>
+                                <input type="number" name="g2" required class="form-input" placeholder="e.g. 23">
+                            </div>
+
+                            <!-- G3: Central Corneal Thickness -->
+                            <div class="q-card">
+                                <p class="question-text">3. Central Corneal Thickness (μm):</p>
+                                <input type="number" name="g3" required class="form-input" placeholder="e.g. 560">
+                            </div>
+
+                            <!-- G4: Visual Field Pattern SD -->
+                            <div class="q-card">
+                                <p class="question-text">4. Visual Field Pattern SD:</p>
+                                <select name="g4" class="form-input" required>
+                                    <option value="" disabled selected>Select status...</option>
+                                    <option value="0">Normal</option>
+                                    <option value="1">Borderline</option>
+                                    <option value="2">Abnormal</option>
+                                </select>
+                            </div>
+
+                            <!-- G5: Family History / Prior Ocular Disease -->
+                            <div class="q-card">
+                                <p class="question-text">5. Family History / Prior Ocular Disease:</p>
+                                <select name="g5" class="form-input" required>
+                                    <option value="" disabled selected>Select...</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <!-- G6: Diabetes or Hypertension -->
+                            <div class="q-card">
+                                <p class="question-text">6. Diabetes or Hypertension:</p>
+                                <select name="g6" class="form-input" required>
+                                    <option value="" disabled selected>Select...</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <hr style="margin: 3rem 0; border: 1px solid var(--color-glass-border);">
+
+
+
+                            <!-- A1: Age -->
+                            <div class="q-card">
+                                <p class="question-text">1. Age:</p>
+                                <input type="number" name="a1" required class="form-input" placeholder="e.g. 62">
+                            </div>
+
+                            <!-- A2: Smoking -->
+                            <div class="q-card">
+                                <p class="question-text">2. Smoking status:</p>
+                                <select name="a2" class="form-input" required>
+                                    <option value="" disabled selected>Select status...</option>
+                                    <option value="0">Non-smoker</option>
+                                    <option value="1">Former smoker</option>
+                                    <option value="2">Current smoker</option>
+                                </select>
+                            </div>
+
+                            <!-- A3: Lipid Abnormality -->
+                            <div class="q-card">
+                                <p class="question-text">3. Lipid Abnormality:</p>
+                                <select name="a3" class="form-input" required>
+                                    <option value="" disabled selected>Select...</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <!-- A4: Hypertension -->
+                            <div class="q-card">
+                                <p class="question-text">4. Hypertension:</p>
+                                <select name="a4" class="form-input" required>
+                                    <option value="" disabled selected>Select...</option>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <!-- A5: Physical Activity -->
+                            <div class="q-card">
+                                <p class="question-text">5. Physical Activity (Self-Reported):</p>
+                                <select name="a5" class="form-input" required>
+                                    <option value="" disabled selected>Select...</option>
+                                    <option value="1">Low / Minimal</option>
+                                    <option value="0">Active / Moderate to High</option>
+                                </select>
+                            </div>
+
+                            <hr style="margin: 3rem 0; border: 1px solid var(--color-glass-border);">
+
+                            <h3>Eye Images (Optional)</h3>
+                            <p>Upload retinal scans for future AI analysis.</p>
+
+                            <div class="q-card" style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                                <div style="flex: 1;">
+                                    <p class="question-text" style="font-size: 1rem;">Left Eye Image</p>
+                                    <input type="file" name="leftEye" id="left-eye-upload" accept="image/*"
+                                        class="form-input">
+                                </div>
+                                <div style="flex: 1;">
+                                    <p class="question-text" style="font-size: 1rem;">Right Eye Image</p>
+                                    <input type="file" name="rightEye" id="right-eye-upload" accept="image/*"
+                                        class="form-input">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn-primary large-btn center-btn mt-4">Submit
+                                Scoring</button>
+                            <p id="scoring-error" class="form-msg error"></p>
+                        </form>
+
+                        <!-- Success State -->
+                        <div id="scoring-success-state" class="hidden text-center mt-4">
+                            <h3 class="success-text">Scoring Complete!</h3>
+                            <p id="final-eye-health-text"
+                                style="font-size: 1.2rem; font-weight: bold; margin: 1rem 0; color: var(--color-primary-light);">
+                            </p>
+
+                            <!-- AI Results Container -->
+                            <div id="ai-results-container" class="hidden"
+                                style="margin: 1.5rem auto; max-width: 600px; text-align: left; background: rgba(50, 205, 50, 0.1); border: 1px solid var(--color-primary); border-radius: 8px; padding: 1rem;">
+                                <h4 style="margin: 0 0 1rem 0; color: var(--color-primary-light); text-align: center;">
+                                    🧠 AI Retinal Analysis Result</h4>
+                                <div style="display: flex; gap: 1rem; justify-content: space-around;">
+                                    <div style="flex: 1;">
+                                        <strong>Left Eye:</strong>
+                                        <div id="ai-left-eye-results"
+                                            style="font-size: 0.9rem; color: var(--color-text-muted); margin-top: 0.5rem;">
+                                            None</div>
+                                    </div>
+                                    <div style="flex: 1;">
+                                        <strong>Right Eye:</strong>
+                                        <div id="ai-right-eye-results"
+                                            style="font-size: 0.9rem; color: var(--color-text-muted); margin-top: 0.5rem;">
+                                            None</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button id="retake-btn" class="btn-secondary mt-2">Retake Questionnaire</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 VIRSA. Retinal AI Scanning. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
