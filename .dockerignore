@@ -1,0 +1,12 @@
+node_modules
+.git
+.gitignore
+*.log
+OcuNet-main/venv
+OcuNet-main/__pycache__
+OcuNet-main/**/__pycache__
+OcuNet-main/Training Log*.txt
+OcuNet-main/tests
+OcuNet-main/data
+public/uploads/*
+!public/uploads/.gitkeep
