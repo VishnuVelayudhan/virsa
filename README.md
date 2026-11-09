@@ -1,6 +1,6 @@
 # VIRSA: AI-Powered Retinal Screening & Clinical Eye Health Platform
 
-[![Hackathon Winner](https://img.shields.io/badge/🏆%201st%20Prize%20Winner-Intersect%202026-gold?style=for-the-badge)](https://virsa.onrender.com)
+[![Hackathon Winner](https://img.shields.io/badge/🏆%201st%20Prize%20Winner-Intersect%202025-gold?style=for-the-badge)](https://virsa.onrender.com)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-virsa.onrender.com-brightgreen?style=for-the-badge&logo=render)](https://virsa.onrender.com)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -8,14 +8,14 @@
 [![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-> 🏆 **1st Prize Winner — Intersect 2026**  
-> **Intersect 2026** was a national-level, 24-hour interdisciplinary healthcare hackathon hosted by the **Helix Innovation Club (BCMCH IEDC & BCMCH E-Cell)** at **Believers Church Medical College Hospital (BCMCH)**. Our team was awarded **1st Place** for designing, engineering, and deploying **VIRSA**—an automated clinical-grade ocular screening system—within the intense 24-hour development marathon.
+> 🏆 **1st Prize Winner — Intersect 2025**  
+> **Intersect 2025** was a national-level, 24-hour interdisciplinary healthcare hackathon hosted by the **Helix Innovation Club (BCMCH IEDC & BCMCH E-Cell)** at **Believers Church Medical College Hospital (BCMCH)**. Our team was awarded **1st Place** for designing, engineering, and deploying **VIRSA**—an automated clinical-grade ocular screening system—within the intense 24-hour development marathon.
 
 ---
 
-## 🌟 The Hackathon Journey: Intersect 2026 (24-Hour Healthcare Sprint)
+## 🌟 The Hackathon Journey: Intersect 2025 (24-Hour Healthcare Sprint)
 
-At **Intersect 2026**, our interdisciplinary challenge was to tackle the severe bottleneck in clinical ophthalmology triage: millions of patients in both primary healthcare centers and underserved rural areas lack access to timely retinal screening, leading to preventable vision loss from conditions like Diabetic Retinopathy, Glaucoma, and Age-Related Macular Degeneration (AMD).
+At **Intersect 2025**, our interdisciplinary challenge was to tackle the severe bottleneck in clinical ophthalmology triage: millions of patients in both primary healthcare centers and underserved rural areas lack access to timely retinal screening, leading to preventable vision loss from conditions like Diabetic Retinopathy, Glaucoma, and Age-Related Macular Degeneration (AMD).
 
 ### What We Built & Delivered in 24 Hours:
 1. **Clinical AI Diagnostics:** Integrated and calibrated **OcuNet**, a deep learning multi-label classification engine capable of diagnosing **28+ ocular conditions** from bilateral fundus photos with a **93.68% Macro ROC-AUC**.
