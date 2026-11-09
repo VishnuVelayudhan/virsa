@@ -1,5 +1,6 @@
 # VIRSA: AI-Powered Retinal Screening & Clinical Eye Health Platform
 
+[![Hackathon Winner](https://img.shields.io/badge/🏆%201st%20Prize%20Winner-Intersect%202026-gold?style=for-the-badge)](https://virsa.onrender.com)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-virsa.onrender.com-brightgreen?style=for-the-badge&logo=render)](https://virsa.onrender.com)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -7,9 +8,20 @@
 [![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-**VIRSA** is an end-to-end ophthalmological screening platform that combines **deep learning computer vision** with **evidence-based systemic clinical scoring** to assess, stratify, and monitor sight-threatening ocular conditions.
+> 🏆 **1st Prize Winner — Intersect 2026**  
+> **Intersect 2026** was a national-level, 24-hour interdisciplinary healthcare hackathon hosted by the **Helix Innovation Club (BCMCH IEDC & BCMCH E-Cell)** at **Believers Church Medical College Hospital (BCMCH)**. Our team was awarded **1st Place** for designing, engineering, and deploying **VIRSA**—an automated clinical-grade ocular screening system—within the intense 24-hour development marathon.
 
-By combining bilateral retinal fundus photography with clinical parameters (such as HbA1c, intraocular pressure, corneal thickness, and blood pressure), VIRSA produces a holistic **Eye Health Score** and per-disease risk probabilities to assist clinical triage.
+---
+
+## 🌟 The Hackathon Journey: Intersect 2026 (24-Hour Healthcare Sprint)
+
+At **Intersect 2026**, our interdisciplinary challenge was to tackle the severe bottleneck in clinical ophthalmology triage: millions of patients in both primary healthcare centers and underserved rural areas lack access to timely retinal screening, leading to preventable vision loss from conditions like Diabetic Retinopathy, Glaucoma, and Age-Related Macular Degeneration (AMD).
+
+### What We Built & Delivered in 24 Hours:
+1. **Clinical AI Diagnostics:** Integrated and calibrated **OcuNet**, a deep learning multi-label classification engine capable of diagnosing **28+ ocular conditions** from bilateral fundus photos with a **93.68% Macro ROC-AUC**.
+2. **Dual-Modality Systemic Scoring:** Designed a medical risk algorithm correlating biochemical markers (HbA1c, IOP, corneal thickness, blood pressure, lipid profiles) into a composite **Eye Health Index**.
+3. **Longitudinal Patient History Tracking:** Implemented a full-stack clinical registry allowing healthcare workers to create patient profiles, track historical risk trajectories, and review past photographic records.
+4. **Cloud Containerization & Production Deployment:** Successfully packaged the entire dual-stack application (Node.js Express + Python PyTorch) into a Docker container and deployed it live to the cloud within the hackathon timeframe.
 
 ---
 
@@ -23,7 +35,7 @@ By combining bilateral retinal fundus photography with clinical parameters (such
 
 ```mermaid
 flowchart TD
-    User["Clinician / User Browser"]
+    User["Clinician / Healthcare Worker Browser"]
     
     subgraph Cloud["Production Cloud Container"]
         subgraph Frontend["Client UI"]
